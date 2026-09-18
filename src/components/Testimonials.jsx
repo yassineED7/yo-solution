@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
@@ -33,12 +34,24 @@ export default function Testimonials() {
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {testimonials.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative flex flex-col justify-between border border-neutral-300/80 bg-white/40 p-8 transition-all hover:bg-white hover:shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.1,
+                ease: [0.16, 1, 0.3, 1], // Courbe de transition très fluide
+              }}
+              whileHover={{ y: -6 }}
+              className="group relative flex flex-col justify-between border border-neutral-300/80 bg-white/40 p-8 transition-colors duration-500 hover:bg-white hover:shadow-xl"
             >
               <div>
-                <Quote size={20} className="text-[#636361] opacity-60" />
+                <Quote 
+                  size={20} 
+                  className="text-[#636361] opacity-60 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#212121]" 
+                />
                 <p className="mt-6 text-sm leading-relaxed text-[#212121]">
                   "{item.quote}"
                 </p>
@@ -52,7 +65,7 @@ export default function Testimonials() {
                   {item.role} • <span className="text-[#212121]">{item.company}</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
