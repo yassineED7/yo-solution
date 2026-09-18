@@ -3,11 +3,11 @@ import { ArrowUpRight, ArrowDown } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative border-b border-neutral-300/70 pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden">
+    <section className="relative border-b border-neutral-300/70 pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           
-          {/* الجانب الأيسر: النصوص والأزرار */}
+          {/* Côté Gauche */}
           <div className="lg:col-span-5">
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#636361]">
               INDEPENDENT DIGITAL AGENCY • EST. 2026
@@ -29,30 +29,36 @@ export default function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#works"
-                className="inline-flex items-center gap-3 bg-[#212121] px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 bg-[#212121] px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-transform duration-300 ease-out hover:-translate-y-0.5"
               >
                 View Projects <ArrowUpRight size={14} />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 border border-[#212121] bg-transparent px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#212121] transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 border border-[#212121] bg-transparent px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#212121] transition-transform duration-300 ease-out hover:-translate-y-0.5"
               >
                 Book Strategy Call
               </a>
             </div>
           </div>
 
-          {/* الجانب الأيمن: تكبير الموكاب (Mockup) بشكل واصل للحدود كما موضح في الصورة */}
+          {/* Côté Droit */}
           <div className="relative lg:col-span-7">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7 }}
-              className="relative mx-auto w-full max-w-[720px] py-6"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover="hover"
+              className="group relative mx-auto w-full max-w-[720px] cursor-pointer py-6"
             >
-              {/* شاشة الكمبيوتر الكبيرة (Main Dashboard) */}
-              <div className="relative w-full rounded-xl border border-neutral-300/80 bg-white p-6 md:p-8 shadow-sm">
-                {/* Navbar Wireframe */}
+              {/* Desktop Dashboard Wireframe */}
+              <motion.div
+                variants={{
+                  hover: { scale: 1.015, y: -3 },
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full rounded-xl border border-neutral-300/80 bg-white p-6 md:p-8 shadow-sm transition-shadow duration-700 ease-out group-hover:shadow-2xl"
+              >
                 <div className="mb-6 flex items-center justify-between border-b border-neutral-200/80 pb-4">
                   <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-neutral-300" />
@@ -64,7 +70,6 @@ export default function Hero() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-6">
-                  {/* Sidebar */}
                   <div className="col-span-4 space-y-4 border-r border-neutral-100 pr-4">
                     <span className="font-serif text-base font-bold tracking-wider text-[#212121]">AURA</span>
                     <div className="h-4 w-24 rounded bg-neutral-900" />
@@ -73,7 +78,6 @@ export default function Hero() {
                     <div className="h-3 w-24 rounded bg-neutral-100" />
                   </div>
 
-                  {/* Body Content */}
                   <div className="col-span-8 space-y-5">
                     <div className="flex items-center justify-between">
                       <div className="space-y-2">
@@ -97,14 +101,15 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* التابليت في الوسط (تم تكبيرها ووضعها في المنتصف كما بالدائرة) */}
+              {/* Mobile Wireframe Positionné en bas à droite */}
               <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 rounded-2xl border-[4px] border-[#212121] bg-white p-4 shadow-2xl z-10"
+                variants={{
+                  hover: { y: -8, rotate: -1.5, scale: 1.03 },
+                }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute -bottom-2 right-6 w-56 md:w-72 rounded-2xl border-[4px] border-[#212121] bg-white p-4 shadow-2xl z-10"
               >
                 <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-neutral-800" />
                 <span className="font-serif text-sm font-bold tracking-wider text-[#212121]">AURA</span>
@@ -121,10 +126,16 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              {/* Tag Responsive */}
-              <div className="absolute -bottom-2 right-2 rounded border border-neutral-300/80 bg-[#FFEFEF] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-20">
+              {/* Badge Responsive */}
+              <motion.div
+                variants={{
+                  hover: { y: -2 },
+                }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute -bottom-6 right-2 rounded border border-neutral-300/80 bg-[#FFEFEF] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-20"
+              >
                 RESPONSIVE / ENGINEERED
-              </div>
+              </motion.div>
             </motion.div>
           </div>
 
