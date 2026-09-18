@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 import Competencies from "./components/Competencies";
 import Portfolio from "./components/Portfolio";
 import Services from "./components/Services";
-import Pricing from "./components/Pricing";
+import Process from "./components/Process";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -16,7 +16,7 @@ export default function App() {
         <Competencies />
         <Portfolio />
         <Services />
-        <Pricing />
+        <Process />
         <Contact />
       </main>
       <Footer />
