@@ -7,7 +7,7 @@
 :root {
   font-family: "Plus Jakarta Sans", sans-serif;
   color: #212121;
-  background: #FFEFEF;
+  background: #F4F0EA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -16,18 +16,18 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #FFEFEF;
+  background: #F4F0EA;
 }
 
 * { box-sizing: border-box; }
 
 ::selection {
   background: #212121;
-  color: #FFEFEF;
+  color: #F4F0EA;
 }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #FFEFEF; }
+::-webkit-scrollbar-track { background: #F4F0EA; }
 ::-webkit-scrollbar-thumb {
   background: #212121;
   border-radius: 10px;
