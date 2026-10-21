@@ -1,7 +1,40 @@
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 
+// Importation des images du projet Élégance
+import eleganceDesk from "../assets/elegance-desk.png";
+import eleganceMobile from "../assets/elegance-mobile.png";
+
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Liste des projets à faire défiler dans le Hero Showcase
+  const showcaseProjects = [
+    {
+      title: "Élégance Clinique",
+      badge: "RESPONSIVE / LUXURY CLINIC",
+      desk: eleganceDesk,
+      mobile: eleganceMobile,
+      isRealImage: true,
+    },
+    {
+      title: "Aura FinTech",
+      badge: "RESPONSIVE / ENGINEERED",
+      isRealImage: false, // Wireframe par défaut
+    }
+  ];
+
+  // Rotation automatique toutes les 4.5 secondes
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % showcaseProjects.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [showcaseProjects.length]);
+
+  const activeProject = showcaseProjects[currentIndex];
+
   return (
     <section className="relative border-b border-neutral-300/70 pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-12">
@@ -42,101 +75,124 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Côté Droit */}
+          {/* Côté Droit : Dynamic Showcase (Desktop + Mobile slider) */}
           <div className="relative lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              whileHover="hover"
-              className="group relative mx-auto w-full max-w-[720px] cursor-pointer py-6"
-            >
-              {/* Desktop Dashboard Wireframe */}
-              <motion.div
-                variants={{
-                  hover: { scale: 1.015, y: -3 },
-                }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full rounded-xl border border-neutral-300/80 bg-white p-6 md:p-8 shadow-sm transition-shadow duration-700 ease-out group-hover:shadow-2xl"
-              >
-                <div className="mb-6 flex items-center justify-between border-b border-neutral-200/80 pb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-neutral-300" />
-                    <span className="h-3 w-3 rounded-full bg-neutral-300" />
-                    <span className="h-3 w-3 rounded-full bg-neutral-300" />
-                  </div>
-                  <div className="h-2.5 w-48 rounded bg-neutral-100" />
-                  <div className="h-6 w-6 rounded-full bg-neutral-200" />
-                </div>
-
-                <div className="grid grid-cols-12 gap-6">
-                  <div className="col-span-4 space-y-4 border-r border-neutral-100 pr-4">
-                    <span className="font-serif text-base font-bold tracking-wider text-[#212121]">AURA</span>
-                    <div className="h-4 w-24 rounded bg-neutral-900" />
-                    <div className="h-3 w-28 rounded bg-neutral-200" />
-                    <div className="h-3 w-20 rounded bg-neutral-100" />
-                    <div className="h-3 w-24 rounded bg-neutral-100" />
-                  </div>
-
-                  <div className="col-span-8 space-y-5">
-                    <div className="flex items-center justify-between">
-                      <div className="space-y-2">
-                        <div className="h-3 w-16 rounded bg-neutral-200" />
-                        <div className="h-5 w-44 rounded bg-neutral-900" />
+            <div className="group relative mx-auto w-full max-w-[720px] py-6 min-h-[420px]">
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-full"
+                >
+                  {/* Mockup Desktop */}
+                  <div className="relative w-full rounded-xl border border-neutral-300/80 bg-neutral-900 overflow-hidden shadow-xl transition-all duration-700 group-hover:shadow-2xl">
+                    
+                    {/* Frame Top Bar */}
+                    <div className="flex items-center justify-between border-b border-white/10 bg-[#141414] px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
                       </div>
-                      <div className="h-10 w-10 rounded-full bg-neutral-200" />
+                      <span className="text-[10px] font-mono text-neutral-400 tracking-wider uppercase">
+                        {activeProject.title}
+                      </span>
+                      <div className="w-12" />
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="rounded-lg border border-neutral-200/80 p-3">
-                          <div className="h-2 w-8 rounded bg-neutral-200" />
-                          <div className="mt-3 h-4 w-12 rounded bg-neutral-800" />
+                    {/* Image ou Wireframe Desktop */}
+                    <div className="relative aspect-[16/10] w-full bg-[#0B0B0B] overflow-hidden">
+                      {activeProject.isRealImage ? (
+                        <img 
+                          src={activeProject.desk} 
+                          alt={activeProject.title}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      ) : (
+                        /* Wireframe par défaut pour Aura */
+                        <div className="p-6 md:p-8 bg-white h-full">
+                          <div className="grid grid-cols-12 gap-6">
+                            <div className="col-span-4 space-y-4 border-r border-neutral-100 pr-4">
+                              <span className="font-serif text-base font-bold tracking-wider text-[#212121]">AURA</span>
+                              <div className="h-4 w-24 rounded bg-neutral-900" />
+                              <div className="h-3 w-28 rounded bg-neutral-200" />
+                              <div className="h-3 w-20 rounded bg-neutral-100" />
+                            </div>
+                            <div className="col-span-8 space-y-5">
+                              <div className="flex items-center justify-between">
+                                <div className="space-y-2">
+                                  <div className="h-3 w-16 rounded bg-neutral-200" />
+                                  <div className="h-5 w-44 rounded bg-neutral-900" />
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-3 gap-3">
+                                {[1, 2, 3].map((i) => (
+                                  <div key={i} className="rounded-lg border border-neutral-200/80 p-3">
+                                    <div className="h-2 w-8 rounded bg-neutral-200" />
+                                    <div className="mt-3 h-4 w-12 rounded bg-neutral-800" />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="h-24 w-full rounded-lg border border-neutral-200/80 bg-neutral-50/50 p-3">
-                      <div className="h-3 w-20 rounded bg-neutral-200" />
+                      )}
                     </div>
                   </div>
-                </div>
-              </motion.div>
 
-              {/* Mobile Wireframe Positionné en bas à droite */}
-              <motion.div
-                variants={{
-                  hover: { y: -8, rotate: -1.5, scale: 1.03 },
-                }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -bottom-2 right-6 w-56 md:w-72 rounded-2xl border-[4px] border-[#212121] bg-white p-4 shadow-2xl z-10"
-              >
-                <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-neutral-800" />
-                <span className="font-serif text-sm font-bold tracking-wider text-[#212121]">AURA</span>
-                
-                <div className="mt-4 rounded-xl bg-[#212121] p-4 text-white">
-                  <div className="h-2 w-10 rounded bg-neutral-400" />
-                  <div className="mt-3 h-5 w-32 rounded bg-white" />
-                </div>
+                  {/* Mockup Mobile SGHRNAH (w-36 / md:w-48) */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="absolute -bottom-3 right-3 w-36 md:w-48 rounded-xl border-[2.5px] border-[#212121] bg-[#0B0B0B] overflow-hidden shadow-2xl z-20"
+                  >
+                    {activeProject.isRealImage ? (
+                      <img 
+                        src={activeProject.mobile} 
+                        alt="Mobile View"
+                        className="w-full h-auto object-cover"
+                      />
+                    ) : (
+                      /* Mobile Wireframe Aura */
+                      <div className="p-3 bg-white">
+                        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-neutral-800" />
+                        <span className="font-serif text-xs font-bold tracking-wider text-[#212121]">AURA</span>
+                        <div className="mt-3 rounded-lg bg-[#212121] p-3 text-white">
+                          <div className="h-1.5 w-8 rounded bg-neutral-400" />
+                          <div className="mt-2 h-4 w-20 rounded bg-white" />
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
 
-                <div className="mt-5 space-y-2.5">
-                  <div className="h-2 w-full rounded bg-neutral-200/80" />
-                  <div className="h-2 w-3/4 rounded bg-neutral-200/80" />
-                  <div className="h-2 w-1/2 rounded bg-neutral-200/80" />
-                </div>
-              </motion.div>
+                  {/* Badge Responsive */}
+                  <div className="absolute -bottom-6 left-3 rounded border border-neutral-300/80 bg-[#FFEFEF] px-3.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-30">
+                    {activeProject.badge}
+                  </div>
 
-              {/* Badge Responsive */}
-              <motion.div
-                variants={{
-                  hover: { y: -2 },
-                }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -bottom-6 right-2 rounded border border-neutral-300/80 bg-[#FFEFEF] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-20"
-              >
-                RESPONSIVE / ENGINEERED
-              </motion.div>
-            </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Indicateurs de Slide en bas */}
+              <div className="absolute -bottom-8 right-3 flex items-center gap-2 z-30">
+                {showcaseProjects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentIndex(i)}
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
+                      i === currentIndex ? "w-6 bg-[#212121]" : "w-1.5 bg-neutral-300"
+                    }`}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+            </div>
           </div>
 
         </div>

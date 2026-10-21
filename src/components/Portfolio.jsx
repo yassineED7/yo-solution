@@ -4,19 +4,27 @@ import { ArrowUpRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import ProjectModal from "./ProjectModal";
 
+// Importation des images du projet Élégance
+import eleganceDesk from "../assets/elegance-desk.png";
+import eleganceMobile from "../assets/elegance-mobile.png";
+
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       id: "01",
-      title: "Aura FinTech",
-      category: "Web Platform",
-      bg: "bg-[#212121]",
+      title: "Élégance Clinique",
+      category: "Landing Page / Luxe",
+      bg: "bg-[#0B0B0B]",
       accent: "text-white",
-      description: "Plateforme financière haute performance conçue pour simplifier la gestion d'actifs complexes et maximiser la conversion.",
-      techstack: ["React", "Tailwind CSS", "Framer Motion", "Node.js"],
-      link: "https://example.com"
+      description: "Page d'atterrissage haut de gamme, entièrement responsive et interactive, conçue pour la clinique esthétique Élégance (Casablanca et Marrakech).",
+      techstack: ["React", "Tailwind CSS", "Vite", "Lucide React"],
+      link: "https://elegance-murex.vercel.app/",
+      images: {
+        desk: eleganceDesk,
+        mobile: eleganceMobile
+      }
     },
     {
       id: "02",
@@ -67,25 +75,46 @@ export default function Portfolio() {
               className="group cursor-pointer"
             >
               <div className={`relative aspect-[4/3] overflow-hidden ${project.bg}`}>
-                <div className={`absolute inset-[10%] border ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`}>
-                  <div className={`flex items-center justify-between border-b p-4 ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`}>
-                    <span className={`font-serif text-lg ${project.accent}`}>{project.title.split(" ")[0]}</span>
-                    <ArrowUpRight size={18} className={project.accent} />
+                
+                {/* Visualisation pour Élégance (Desktop Guddaa + Mobile) */}
+                {project.id === "01" ? (
+                  <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4 transition-transform duration-700 group-hover:scale-105">
+                    {/* Mockup Desktop (Guddateera: w-[92%] fi top-3 left-3) */}
+                    <img 
+                      src={project.images.desk} 
+                      alt="Élégance Desktop Preview" 
+                      className="absolute w-[92%] rounded-md shadow-2xl border border-white/10 top-3 left-3 object-cover object-top"
+                    />
+                    {/* Mockup Mobile */}
+                    <img 
+                      src={project.images.mobile} 
+                      alt="Élégance Mobile Preview" 
+                      className="absolute w-[26%] sm:w-[24%] rounded-xl shadow-2xl border-2 border-white/20 bottom-3 right-3 object-cover z-10"
+                    />
                   </div>
-                  <div className="grid h-[calc(100%-57px)] place-items-center p-8">
-                    <div className="w-full">
-                      <div className={`mx-auto h-3 w-1/2 ${project.accent === "text-white" ? "bg-white" : "bg-[#212121]"}`} />
-                      <div className={`mx-auto mt-4 h-2 w-1/3 ${project.accent === "text-white" ? "bg-white/30" : "bg-black/20"}`} />
-                      <div className="mt-10 grid grid-cols-3 gap-3">
-                        {[1, 2, 3].map(i => (
-                          <div key={i} className={`h-16 border ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`} />
-                        ))}
+                ) : (
+                  /* Standard preview for other projects */
+                  <div className={`absolute inset-[10%] border ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`}>
+                    <div className={`flex items-center justify-between border-b p-4 ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`}>
+                      <span className={`font-serif text-lg ${project.accent}`}>{project.title.split(" ")[0]}</span>
+                      <ArrowUpRight size={18} className={project.accent} />
+                    </div>
+                    <div className="grid h-[calc(100%-57px)] place-items-center p-8">
+                      <div className="w-full">
+                        <div className={`mx-auto h-3 w-1/2 ${project.accent === "text-white" ? "bg-white" : "bg-[#212121]"}`} />
+                        <div className={`mx-auto mt-4 h-2 w-1/3 ${project.accent === "text-white" ? "bg-white/30" : "bg-black/20"}`} />
+                        <div className="mt-10 grid grid-cols-3 gap-3">
+                          {[1, 2, 3].map(i => (
+                            <div key={i} className={`h-16 border ${project.accent === "text-white" ? "border-white/20" : "border-black/20"}`} />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="absolute inset-0 bg-black/0 transition-all duration-500 group-hover:bg-black/10" />
-                <div className="absolute bottom-6 left-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                )}
+
+                <div className="absolute inset-0 bg-black/0 transition-all duration-500 group-hover:bg-black/20" />
+                <div className="absolute bottom-6 left-6 opacity-0 transition-all duration-500 group-hover:opacity-100 z-20">
                   <div className="flex items-center gap-2 bg-white px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#212121]">
                     Explore Project <ArrowUpRight size={12} />
                   </div>
@@ -104,7 +133,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Rendu de la fenêtre Modale lors du clic */}
+      {/* Project Modal */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 

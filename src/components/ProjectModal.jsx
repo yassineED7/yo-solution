@@ -24,7 +24,8 @@ export default function ProjectModal({ project, onClose }) {
         >
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 text-[#212121] hover:opacity-70"
+            className="absolute top-6 right-6 p-2 text-[#212121] hover:opacity-70 transition-opacity"
+            aria-label="Fermer"
           >
             <X size={20} />
           </button>
@@ -36,10 +37,19 @@ export default function ProjectModal({ project, onClose }) {
             {project.title}
           </h2>
 
-          <div className="mt-6 aspect-video w-full border border-neutral-300 bg-white p-4">
-            <div className="flex h-full items-center justify-center bg-neutral-100 text-xs font-mono text-neutral-500">
-              [ Preview / Screenshot ]
-            </div>
+          {/* CONTENEUR IMAGE AVEC APERÇU RÉEL */}
+          <div className="mt-6 aspect-video w-full overflow-hidden border border-neutral-300 bg-neutral-900 shadow-inner">
+            {project.images?.desk ? (
+              <img
+                src={project.images.desk}
+                alt={project.title}
+                className="h-full w-full object-cover object-top"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center bg-neutral-100 text-xs font-mono text-neutral-500">
+                [ Preview / Screenshot ]
+              </div>
+            )}
           </div>
 
           <div className="mt-6 space-y-4">
