@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 
-// Importation des images du projet Élégance
+// Importation des images des projets
 import eleganceDesk from "../assets/elegance-desk.png";
 import eleganceMobile from "../assets/elegance-mobile.png";
+import storeDesk from "../assets/store-desk.png";
+import storeMobile from "../assets/store-mobil.png";
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,10 +21,17 @@ export default function Hero() {
       isRealImage: true,
     },
     {
+      title: "ATELIER Store",
+      badge: "RESPONSIVE / LUXURY E-COMMERCE",
+      desk: storeDesk,
+      mobile: storeMobile,
+      isRealImage: true,
+    },
+    {
       title: "Aura FinTech",
       badge: "RESPONSIVE / ENGINEERED",
       isRealImage: false, // Wireframe par défaut
-    }
+    },
   ];
 
   // Rotation automatique toutes les 4.5 secondes
@@ -143,7 +152,7 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* Mockup Mobile - Fixed Responsive Sizes (w-28 sm:w-36 md:w-48) */}
+                  {/* Mockup Mobile */}
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -153,7 +162,7 @@ export default function Hero() {
                     {activeProject.isRealImage ? (
                       <img 
                         src={activeProject.mobile} 
-                        alt="Mobile View"
+                        alt={`${activeProject.title} Mobile View`}
                         className="w-full h-auto object-cover"
                       />
                     ) : (
