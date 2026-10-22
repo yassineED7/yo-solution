@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import ProjectModal from "./ProjectModal";
 
-// Importation des images des projets
+// Import project images
 import eleganceDesk from "../assets/elegance-desk.png";
 import eleganceMobile from "../assets/elegance-mobile.png";
 import storeDesk from "../assets/store-desk.png";
 import storeMobile from "../assets/store-mobil.png";
 
-export default function Portfolio() {
+export default function Portfolio({ onNavigateToProjects }) {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
@@ -73,6 +73,7 @@ export default function Portfolio() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-12">
         <SectionHeader number="02" label="Selected Works" title="Selected digital worlds." />
 
+        {/* Projects Grid */}
         <div className="grid gap-5 md:grid-cols-2">
           {projects.map((project, index) => (
             <motion.article
@@ -85,16 +86,13 @@ export default function Portfolio() {
               className="group cursor-pointer"
             >
               <div className={`relative aspect-[4/3] overflow-hidden ${project.bg}`}>
-                {/* Visualisation Mockup Desktop + Mobile (pour Élégance et ATELIER) */}
                 {project.images ? (
                   <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4 transition-transform duration-700 group-hover:scale-105">
-                    {/* Mockup Desktop */}
                     <img
                       src={project.images.desk}
                       alt={`${project.title} Desktop Preview`}
                       className="absolute w-[92%] rounded-md shadow-2xl border border-white/10 top-3 left-3 object-cover object-top"
                     />
-                    {/* Mockup Mobile */}
                     <img
                       src={project.images.mobile}
                       alt={`${project.title} Mobile Preview`}
@@ -102,7 +100,6 @@ export default function Portfolio() {
                     />
                   </div>
                 ) : (
-                  /* Standard preview pour les autres projets */
                   <div
                     className={`absolute inset-[10%] border ${
                       project.accent === "text-white" ? "border-white/20" : "border-black/20"
@@ -117,32 +114,6 @@ export default function Portfolio() {
                         {project.title.split(" ")[0]}
                       </span>
                       <ArrowUpRight size={18} className={project.accent} />
-                    </div>
-                    <div className="grid h-[calc(100%-57px)] place-items-center p-8">
-                      <div className="w-full">
-                        <div
-                          className={`mx-auto h-3 w-1/2 ${
-                            project.accent === "text-white" ? "bg-white" : "bg-[#212121]"
-                          }`}
-                        />
-                        <div
-                          className={`mx-auto mt-4 h-2 w-1/3 ${
-                            project.accent === "text-white" ? "bg-white/30" : "bg-black/20"
-                          }`}
-                        />
-                        <div className="mt-10 grid grid-cols-3 gap-3">
-                          {[1, 2, 3].map((i) => (
-                            <div
-                              key={i}
-                              className={`h-16 border ${
-                                project.accent === "text-white"
-                                  ? "border-white/20"
-                                  : "border-black/20"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   </div>
                 )}
@@ -166,6 +137,17 @@ export default function Portfolio() {
               </div>
             </motion.article>
           ))}
+        </div>
+
+        {/* View All Projects Button */}
+        <div className="mt-16 flex justify-center">
+          <button
+            onClick={onNavigateToProjects}
+            className="group inline-flex items-center gap-3 border border-[#212121] bg-[#212121] px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-transparent hover:text-[#212121]"
+          >
+            <span>View All Projects</span>
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
         </div>
       </div>
 
