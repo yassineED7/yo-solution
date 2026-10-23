@@ -7,6 +7,8 @@ import eleganceDesk from "../assets/elegance-desk.png";
 import eleganceMobile from "../assets/elegance-mobile.png";
 import storeDesk from "../assets/store-desk.png";
 import storeMobile from "../assets/store-mobil.png";
+import facturoDesk from "../assets/facturo-desk.png";
+import facturoMobile from "../assets/facturo-mobil.png";
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,6 +27,13 @@ export default function Hero() {
       badge: "RESPONSIVE / LUXURY E-COMMERCE",
       desk: storeDesk,
       mobile: storeMobile,
+      isRealImage: true,
+    },
+    {
+      title: "Facturo",
+      badge: "RESPONSIVE / SAAS & INVOICING",
+      desk: facturoDesk,
+      mobile: facturoMobile,
       isRealImage: true,
     },
     {

@@ -9,6 +9,8 @@ import eleganceDesk from "../assets/elegance-desk.png";
 import eleganceMobile from "../assets/elegance-mobile.png";
 import storeDesk from "../assets/store-desk.png";
 import storeMobile from "../assets/store-mobil.png";
+import facturoDesk from "../assets/facturo-desk.png";
+import facturoMobile from "../assets/facturo-mobil.png";
 
 export default function Portfolio({ onNavigateToProjects }) {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -33,7 +35,7 @@ export default function Portfolio({ onNavigateToProjects }) {
       id: "02",
       title: "ATELIER Store",
       category: "E-Commerce / Fashion & Luxe",
-      bg: "bg-[#1c1817]",
+      bg: "bg-[#0B0B0B]",
       accent: "text-white",
       description:
         "Boutique e-commerce de luxe minimale et sophistiquée avec filtres interactifs, aperçu rapide, gestion du panier/favoris et commande directe via WhatsApp.",
@@ -46,24 +48,28 @@ export default function Portfolio({ onNavigateToProjects }) {
     },
     {
       id: "03",
+      title: "Facturo",
+      category: "SaaS / Billing & Invoicing",
+      bg: "bg-[#0B0B0B]",
+      accent: "text-white",
+      description:
+        "Plateforme de facturation et de gestion financière simplifiée pour freelances et TPE, avec création de devis, suivi des paiements et export PDF.",
+      techstack: ["React", "Tailwind CSS", "Vite", "Lucide React"],
+      link: "https://facturo-ashy.vercel.app/",
+      images: {
+        desk: facturoDesk,
+        mobile: facturoMobile,
+      },
+    },
+    {
+      id: "04",
       title: "Vanguard Systems",
       category: "Dashboard UI",
-      bg: "bg-[#636361]",
+      bg: "bg-[#0B0B0B]",
       accent: "text-white",
       description:
         "Interface de tableau de bord analytique en temps réel pour le suivi des métriques critiques d'entreprise.",
       techstack: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
-      link: "https://example.com",
-    },
-    {
-      id: "04",
-      title: "Atelier Form",
-      category: "Brand Identity",
-      bg: "bg-[#D5D3CC]",
-      accent: "text-[#212121]",
-      description:
-        "Identité de marque numérique interactive et système de design sur mesure pour studio créatif.",
-      techstack: ["React", "Three.js", "Tailwind CSS"],
       link: "https://example.com",
     },
   ];
