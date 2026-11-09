@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto max-w-[1440px] px-5 py-5 md:px-8 lg:px-12">
-        <nav className="border border-neutral-300/70 bg-[#FFEFEF]/90 px-5 py-4 backdrop-blur-xl md:px-6">
+        <nav className="border border-neutral-300/70 bg-[#FAF8F5]/90 px-5 py-4 backdrop-blur-xl md:px-6">
           <div className="flex items-center justify-between">
             <a href="#top" className="flex items-center gap-3">
               <span className="font-serif text-xl tracking-tight">YO</span>
@@ -31,7 +31,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            <a href="#contact" className="hidden items-center gap-2 bg-[#212121] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#FFEFEF] transition-transform hover:-translate-y-0.5 md:flex">
+            <a href="#contact" className="hidden items-center gap-2 bg-[#212121] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#FAF8F5] transition-transform hover:-translate-y-0.5 md:flex">
               Initiate Dialogue <ArrowUpRight size={13} />
             </a>
 

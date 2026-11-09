@@ -14,7 +14,7 @@ export default function App() {
   const [view, setView] = useState("home"); // 'home' ou 'projects'
 
   return (
-    <div className="min-h-screen bg-[#FFEFEF] text-[#212121]">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#212121]">
       <Navbar onNavigate={(page) => setView(page)} />
       <main>
         {view === "home" ? (

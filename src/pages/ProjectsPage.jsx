@@ -89,7 +89,7 @@ export default function ProjectsPage({ onBack }) {
   });
 
   return (
-    <div className="min-h-screen bg-[#FFEFEF] text-[#212121] py-16 md:py-24">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#212121] py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-12">
         
         {/* Return Button */}

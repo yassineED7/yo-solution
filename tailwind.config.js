@@ -7,7 +7,7 @@ export default {
         yo: {
           dark: "#212121",
           beige: "#D5D3CC",
-          cream: "#FFEFEF",
+          cream: "#FAF8F5",
           gray: "#636361",
         },
       },

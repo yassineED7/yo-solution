@@ -188,7 +188,7 @@ export default function Hero() {
                   </motion.div>
 
                   {/* Badge Responsive */}
-                  <div className="absolute -bottom-6 left-2 sm:left-3 rounded border border-neutral-300/80 bg-[#FFEFEF] px-3 sm:px-3.5 py-1 sm:py-1.5 text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-30">
+                  <div className="absolute -bottom-6 left-2 sm:left-3 rounded border border-neutral-300/80 bg-[#FAF8F5] px-3 sm:px-3.5 py-1 sm:py-1.5 text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.18em] text-[#636361] shadow-sm z-30">
                     {activeProject.badge}
                   </div>
 

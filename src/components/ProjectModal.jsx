@@ -20,7 +20,7 @@ export default function ProjectModal({ project, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto border border-neutral-300 bg-[#FFEFEF] p-6 shadow-2xl md:p-10"
+          className="relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto border border-neutral-300 bg-[#FAF8F5] p-6 shadow-2xl md:p-10"
         >
           <button
             onClick={onClose}
